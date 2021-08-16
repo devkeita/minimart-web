@@ -1,6 +1,6 @@
 import { CartItem, getCartItemsFromLocalStorage, setCartItemsToLocalStorage } from "../lib/cart";
 import { Product } from "../lib/product";
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from "react";
 
 export type CartProps = {
   cartItems: CartItem[];

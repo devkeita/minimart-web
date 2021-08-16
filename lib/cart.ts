@@ -1,14 +1,14 @@
-import { Product } from './product';
+import { Product } from "./product";
 
-const LOCAL_STORAGE_KEY = 'minimart:cart'
+const LOCAL_STORAGE_KEY = "minimart:cart";
 
 export type CartItem = {
   product: Product;
   quantity: number;
-}
+};
 
 export function getCartItemsFromLocalStorage(): CartItem[] {
-  return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
+  return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || "[]");
 }
 
 export function setCartItemsToLocalStorage(cartItems: CartItem[]): void {

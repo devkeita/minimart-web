@@ -1,7 +1,7 @@
-import { FC, useContext } from 'react';
+import { FC, useContext } from "react";
 import styles from "./cart.module.css";
 import { Layout } from "../components/Layout";
-import { CartContext } from '../context/cartContext';
+import { CartContext } from "../context/cartContext";
 
 const CartPage: FC = () => {
   const { cartItems, totalPrice } = useContext(CartContext);
@@ -15,7 +15,9 @@ const CartPage: FC = () => {
               <img className={styles.full} src={cartItem.product.imageUrl} alt={`${cartItem.product.name}の写真`} />
             </div>
             <div className={styles.listItemRight}>
-              <p>{cartItem.product.name} {cartItem.product.price}円</p>
+              <p>
+                {cartItem.product.name} {cartItem.product.price}円
+              </p>
               <p>{cartItem.quantity}個</p>
             </div>
           </li>
