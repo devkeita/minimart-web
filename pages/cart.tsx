@@ -4,16 +4,11 @@ import { Layout } from "../components/Layout";
 import { CartContext } from "../contexts/cartContext";
 import { useRouter } from "next/dist/client/router";
 import { Product } from "../lib/product";
+import { createOrder } from "../lib/order";
 
 const CartPage: FC = () => {
   const { cartItems, totalPrice, addCartItem, removeCartItem, resetCartItem } = useContext(CartContext);
   const router = useRouter();
-
-  const onClickOrder = () => {
-    window.alert("注文しました");
-    resetCartItem();
-    router.push("/");
-  };
 
   const onClickAddButton = (product: Product) => {
     addCartItem(product);
@@ -22,6 +17,16 @@ const CartPage: FC = () => {
   const onClickRemoveButton = (product: Product) => {
     removeCartItem(product);
   };
+
+  const onClickOrderButton = async () => {
+    if (cartItems.length === 0) {
+      window.alert('カートの中身が空です');
+      return;
+    }
+    const order = await createOrder(cartItems);
+    resetCartItem();
+    router.push(`/orders/${order.id}`);
+  }
 
   return (
     <Layout>
@@ -46,7 +51,7 @@ const CartPage: FC = () => {
         ))}
       </ul>
       <p className={styles.totalPrice}>合計：{totalPrice}円</p>
-      <button className={styles.orderButton} onClick={onClickOrder}>
+      <button className={styles.orderButton} onClick={onClickOrderButton}>
         注文する
       </button>
     </Layout>
