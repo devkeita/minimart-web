@@ -27,7 +27,7 @@ const ProductPage: FC = () => {
       <img className={styles.full} src={product?.imageUrl} alt={`${product?.name}の写真`} />
       <div className={styles.container}>
         <h2>{product?.name}</h2>
-        <p>{product?.price}</p>
+        <p>{product?.price}円</p>
         <p>{product?.description}</p>
         <button className={styles.addCartButton} onClick={onClickAddCart}>
           カートに追加する
