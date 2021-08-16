@@ -38,14 +38,17 @@ export default function useCart(): CartProps {
       prev.push({ product, quantity: 1 });
     }
 
-    setCartItems(prev);
-    setCartItemsToLocalStorage(cartItems);
+    setCartItemsFn(prev);
   };
 
   const resetCartItem = (): void => {
-    setCartItems([]);
-    setCartItemsToLocalStorage([]);
+    setCartItemsFn([]);
   };
+
+  const setCartItemsFn = (cartItems: CartItem[]) => {
+    setCartItems(cartItems);
+    setCartItemsToLocalStorage(cartItems);
+  }
 
   return {
     cartItems,
