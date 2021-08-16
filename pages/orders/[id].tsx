@@ -3,6 +3,7 @@ import { useRouter } from "next/dist/client/router";
 import styles from "./[id].module.css";
 import { Layout } from "../../components/Layout";
 import { getOrder, Order } from "../../lib/order";
+import OrderListItem from "../../components/OrderListItem";
 
 const OrderPage: FC = () => {
   const [order, setOrder] = useState<Order>();
@@ -26,17 +27,7 @@ const OrderPage: FC = () => {
       <h2 className={styles.h2}>注文した商品</h2>
       <ul className={styles.list}>
         {order?.items.map((cartItem) => (
-          <li key={cartItem.product.id} className={styles.listItem}>
-            <div className={styles.listItemLeft}>
-              <img className={styles.full} src={cartItem.product.imageUrl} alt={`${cartItem.product.name}の写真`} />
-            </div>
-            <div className={styles.listItemRight}>
-              <p>
-                {cartItem.product.name} {cartItem.product.price}円
-              </p>
-              <p>{cartItem.quantity}個</p>
-            </div>
-          </li>
+          <OrderListItem key={cartItem.product.id} cartItem={cartItem} showButton={false} />
         ))}
       </ul>
     </Layout>
