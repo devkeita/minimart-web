@@ -6,6 +6,7 @@ const initialValue: CartProps = {
   cartItemCount: 0,
   totalPrice: 0,
   addCartItem: () => {},
+  removeCartItem: () => {},
   resetCartItem: () => {},
 };
 

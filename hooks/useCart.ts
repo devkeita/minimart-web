@@ -7,6 +7,7 @@ export type CartProps = {
   cartItemCount: number;
   totalPrice: number;
   addCartItem: (product: Product) => void;
+  removeCartItem: (product: Product) => void;
   resetCartItem: () => void;
 };
 
@@ -41,6 +42,23 @@ export default function useCart(): CartProps {
     setCartItemsFn(prev);
   };
 
+  const removeCartItem = (product: Product): void => {
+    let prev = cartItems.concat();
+    const cartItem = prev.find((cartItem) => {
+      return cartItem.product.id === product.id;
+    });
+
+    if (!cartItem) return;
+
+    if (cartItem?.quantity === 1) {
+      prev = prev.filter((item) => item.product.id !== cartItem.product.id);
+    } else {
+      cartItem.quantity--;
+    }
+
+    setCartItemsFn(prev);
+  };
+
   const resetCartItem = (): void => {
     setCartItemsFn([]);
   };
@@ -48,13 +66,14 @@ export default function useCart(): CartProps {
   const setCartItemsFn = (cartItems: CartItem[]) => {
     setCartItems(cartItems);
     setCartItemsToLocalStorage(cartItems);
-  }
+  };
 
   return {
     cartItems,
     cartItemCount,
     totalPrice,
     addCartItem,
+    removeCartItem,
     resetCartItem,
   };
 }

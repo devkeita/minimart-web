@@ -28,6 +28,10 @@
   height: 100%;
 }
 
+.textQuantity::after {
+  content: " ";
+}
+
 .totalPrice {
   padding-right: 10px;
   text-align: right;

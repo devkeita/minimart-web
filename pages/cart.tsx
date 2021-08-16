@@ -3,15 +3,24 @@ import styles from "./cart.module.css";
 import { Layout } from "../components/Layout";
 import { CartContext } from "../contexts/cartContext";
 import { useRouter } from "next/dist/client/router";
+import { Product } from "../lib/product";
 
 const CartPage: FC = () => {
-  const { cartItems, totalPrice, resetCartItem } = useContext(CartContext);
+  const { cartItems, totalPrice, addCartItem, removeCartItem, resetCartItem } = useContext(CartContext);
   const router = useRouter();
 
   const onClickOrder = () => {
     window.alert("注文しました");
     resetCartItem();
     router.push("/");
+  };
+
+  const onClickAddButton = (product: Product) => {
+    addCartItem(product);
+  };
+
+  const onClickRemoveButton = (product: Product) => {
+    removeCartItem(product);
   };
 
   return (
@@ -26,7 +35,12 @@ const CartPage: FC = () => {
               <p>
                 {cartItem.product.name} {cartItem.product.price}円
               </p>
-              <p>{cartItem.quantity}個</p>
+              <p>
+                {cartItem.quantity}個 &nbsp;
+                <button onClick={() => onClickAddButton(cartItem.product)}>+</button>
+                &nbsp;
+                <button onClick={() => onClickRemoveButton(cartItem.product)}>-</button>
+              </p>
             </div>
           </li>
         ))}
