@@ -26,7 +26,7 @@ export default function useCart(): CartProps {
   }, [cartItems]);
 
   const addCartItem = (product: Product): void => {
-    const prev = cartItems;
+    const prev = cartItems.concat();
     // 商品が既にカートに入っているか確認するため
     const cartItem = prev.find((cartItem) => {
       return cartItem.product.id === product.id;
@@ -37,7 +37,6 @@ export default function useCart(): CartProps {
     } else {
       prev.push({ product, quantity: 1 });
     }
-    console.log(prev);
 
     setCartItems(prev);
     setCartItemsToLocalStorage(cartItems);
