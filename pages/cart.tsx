@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 import styles from "./cart.module.css";
 import { Layout } from "../components/Layout";
-import { CartContext } from "../context/cartContext";
+import { CartContext } from "../contexts/cartContext";
 import { useRouter } from "next/dist/client/router";
 
 const CartPage: FC = () => {

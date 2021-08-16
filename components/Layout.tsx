@@ -2,7 +2,7 @@ import { FC, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "./Layout.module.css";
-import { CartContext } from "../context/cartContext";
+import { CartContext } from "../contexts/cartContext";
 
 type Props = {};
 

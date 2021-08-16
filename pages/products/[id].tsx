@@ -3,7 +3,7 @@ import { useRouter } from "next/dist/client/router";
 import styles from "./[id].module.css";
 import { getProduct, Product } from "../../lib/product";
 import { Layout } from "../../components/Layout";
-import { CartContext } from "../../context/cartContext";
+import { CartContext } from "../../contexts/cartContext";
 
 const ProductPage: FC = () => {
   const [product, setProduct] = useState<Product>();
