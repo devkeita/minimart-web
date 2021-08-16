@@ -2,9 +2,17 @@ import { FC, useContext } from "react";
 import styles from "./cart.module.css";
 import { Layout } from "../components/Layout";
 import { CartContext } from "../context/cartContext";
+import { useRouter } from "next/dist/client/router";
 
 const CartPage: FC = () => {
-  const { cartItems, totalPrice } = useContext(CartContext);
+  const { cartItems, totalPrice, resetCartItem } = useContext(CartContext);
+  const router = useRouter();
+
+  const onClickOrder = () => {
+    window.alert("注文しました");
+    resetCartItem();
+    router.push("/");
+  };
 
   return (
     <Layout>
@@ -24,7 +32,9 @@ const CartPage: FC = () => {
         ))}
       </ul>
       <p className={styles.totalPrice}>合計：{totalPrice}円</p>
-      <button className={styles.orderButton}>注文する</button>
+      <button className={styles.orderButton} onClick={onClickOrder}>
+        注文する
+      </button>
     </Layout>
   );
 };
